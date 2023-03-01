@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS public.shifts_start
     idshift numeric(1,0) NOT NULL,
     startdate timestamp without time zone NOT NULL,
     endstate timestamp without time zone,
-    idlecture numeric(10,0),
+    idreading numeric(10,0),
     CONSTRAINT shifts_start_pk PRIMARY KEY (idowner, idcompany, idstation, id)
 )
 

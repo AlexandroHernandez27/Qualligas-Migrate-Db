@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS public.sales
     total numeric(16,6) NOT NULL,
     state numeric(1,0) NOT NULL,
     cfdi character(36) COLLATE pg_catalog."default",
-    total_pay numeric(16,6),
+    total_payment numeric(16,6),
     dig_seg numeric(4,0),
     CONSTRAINT sales_pk PRIMARY KEY (idowner, idcompany, idstation, id)
 )
@@ -29,7 +29,7 @@ ALTER TABLE IF EXISTS public.sales
 
 -- DROP INDEX IF EXISTS public.ventas_idx_fecha;
 
-CREATE INDEX IF NOT EXISTS sales_idx_dates
+CREATE INDEX IF NOT EXISTS sales_idx_date
     ON public.sales USING btree
     (dates ASC NULLS LAST)
     TABLESPACE pg_default;

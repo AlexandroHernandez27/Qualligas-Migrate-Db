@@ -2,7 +2,7 @@
 
 -- DROP TABLE IF EXISTS public.ventas_pagos;
 
-CREATE TABLE IF NOT EXISTS public.ventas_payments
+CREATE TABLE IF NOT EXISTS public.sales_payments
 (
     idowner character varying(4) COLLATE pg_catalog."default" NOT NULL,
     idcompany numeric(2,0) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS public.ventas_payments
     importe numeric(16,6) NOT NULL,
     reference character varying(20) COLLATE pg_catalog."default",
     cfdi character(36) COLLATE pg_catalog."default",
-    CONSTRAINT sales_pays_pk PRIMARY KEY (idowner, idcompany, idestation, idsale, id)
+    CONSTRAINT sales_payments_pk PRIMARY KEY (idowner, idcompany, idstation, idsale, id)
 )
 
 TABLESPACE pg_default;

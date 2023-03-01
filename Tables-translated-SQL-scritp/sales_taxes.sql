@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS public.sales_taxes
     tax character varying(10) COLLATE pg_catalog."default" NOT NULL,
     tasa numeric(7,4) NOT NULL,
     importe numeric(16,6) NOT NULL,
-    CONSTRAINT ventas_impuestos_pk PRIMARY KEY (idowner, idempresa, idestacion, idventa, idventaitem, tipo, impuesto)
+    CONSTRAINT ventas_impuestos_pk PRIMARY KEY (idowner, idcompany, idstation, idsale, idsalesitem, type, tax)
 )
 
 TABLESPACE pg_default;

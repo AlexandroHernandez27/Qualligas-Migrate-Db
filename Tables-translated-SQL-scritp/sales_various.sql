@@ -19,12 +19,12 @@ CREATE TABLE IF NOT EXISTS public.sales_various
     idsalesitem numeric(5,0),
     paymentmethod character varying(1) COLLATE pg_catalog."default" NOT NULL,
     formapago character varying(2) COLLATE pg_catalog."default" NOT NULL,
-    idisla numeric(2,0) NOT NULL,
+    idisland numeric(2,0) NOT NULL,
     iddispensario numeric(2,0) NOT NULL,
     idposicioncarga numeric(2,0) NOT NULL,
     despachador numeric(3,0),
-    turno_inicio numeric(10,0),
-    CONSTRAINT sales_various_pk PRIMARY KEY (idowner, idcompany, idestation, id)
+    start_shift numeric(10,0),
+    CONSTRAINT sales_various_pk PRIMARY KEY (idowner, idcompany, idstation, id)
 )
 
 TABLESPACE pg_default;

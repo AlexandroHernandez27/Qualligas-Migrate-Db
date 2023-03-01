@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS public.sales_items
 (
     idowner character varying(4) COLLATE pg_catalog."default" NOT NULL,
     idcompany numeric(2,0) NOT NULL,
-    idestation numeric(2,0) NOT NULL,
+    idstation numeric(2,0) NOT NULL,
     idsale numeric(10,0) NOT NULL,
     id numeric(10,0) NOT NULL,
     idproduct character varying(30) COLLATE pg_catalog."default" NOT NULL,

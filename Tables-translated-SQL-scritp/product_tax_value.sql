@@ -8,9 +8,9 @@ CREATE TABLE IF NOT EXISTS public.product_tax_value
     idcompany numeric(2,0) NOT NULL,
     product character varying(30) COLLATE pg_catalog."default" NOT NULL,
     tax character(5) COLLATE pg_catalog."default" NOT NULL,
-    from timestamp without time zone NOT NULL,
+    _from timestamp without time zone NOT NULL,
     value numeric(16,6) NOT NULL,
-    CONSTRAINT product_tax_value_pk PRIMARY KEY (product, tax, from)
+    CONSTRAINT product_tax_value_pk PRIMARY KEY (product, tax, _from)
 )
 
 TABLESPACE pg_default;
