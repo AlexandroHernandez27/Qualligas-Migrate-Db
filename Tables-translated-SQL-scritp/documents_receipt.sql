@@ -15,12 +15,12 @@ CREATE TABLE IF NOT EXISTS public.documents_receipt
     tad character varying(3) COLLATE pg_catalog."default",
     voldoc numeric(12,6) NOT NULL,
     importe numeric(16,6),
-    registro timestamp without time zone NOT NULL,
+    record timestamp without time zone NOT NULL,
     price numeric(12,6),
     permiso_transporte character varying(30) COLLATE pg_catalog."default",
-    proveedor numeric(2,0),
-    transportista numeric(2,0),
-    temperatura numeric(5,2),
+    supplier numeric(2,0),
+    carrier numeric(2,0),
+    temperature numeric(5,2),
     vol_ct numeric(12,6),
     cfdi_timbre character(36) COLLATE pg_catalog."default",
     cfdi_type character(1) COLLATE pg_catalog."default",
@@ -35,13 +35,13 @@ CREATE TABLE IF NOT EXISTS public.documents_receipt
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.recepciones_documentos
+ALTER TABLE IF EXISTS public.documents_receipt
     OWNER to postgres;
 -- Index: rec_doc_idx_fecha
 
 -- DROP INDEX IF EXISTS public.rec_doc_idx_fecha;
 
 CREATE INDEX IF NOT EXISTS rec_doc_idx_fecha
-    ON public.recepciones_documentos USING btree
+    ON public.documents_receipt USING btree
     (fecha ASC NULLS LAST)
     TABLESPACE pg_default;
