@@ -29,3 +29,6 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.tanks_receipt
     OWNER to postgres;
+
+
+    
