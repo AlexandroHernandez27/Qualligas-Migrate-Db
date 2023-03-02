@@ -2,17 +2,21 @@
 -- Name: alarmas alarmas_fk_estaciones; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.alarmas
-    ADD CONSTRAINT alarmas_fk_estaciones FOREIGN KEY (idowner, idempresa, idestacion) REFERENCES public.estaciones(idowner, idempresa, id);
+ALTER TABLE ONLY public.alarms
+    -- ADD CONSTRAINT alarmas_fk_estaciones FOREIGN KEY (idowner, idempresa, idestacion) REFERENCES public.estaciones(idowner, idempresa, id);
+    ADD CONSTRAINT alarms_fk_stations FOREIGN KEY (idcompany, idstation, idowner)
+        REFERENCES public.stations (idcompany, id, idowner) MATCH SIMPLE
 
 
 --
 -- Name: alarmas alarmas_fk_mangueras; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.alarmas
-    ADD CONSTRAINT alarmas_fk_mangueras FOREIGN KEY (idowner, idempresa, idestacion, idisla, iddispensario, idposicioncarga, idmanguera) REFERENCES public.mangueras(idowner, idempresa, idestacion, idisla, iddispensario, idposicioncarga, id);
-
+ALTER TABLE ONLY public.alarms
+    -- ADD CONSTRAINT alarmas_fk_mangueras FOREIGN KEY (idowner, idempresa, idestacion, idisla, iddispensario, idposicioncarga, idmanguera) REFERENCES public.mangueras(idowner, idempresa, idestacion, idisla, iddispensario, idposicioncarga, id);
+    CONSTRAINT alarms_fk_hoses FOREIGN KEY (idcompany, idhose, idstation, iddispensario, idisland, idowner, idposicioncarga)
+        REFERENCES public.hoses (idcompany, id, idstation, iddispensario, idisland, idowner, idposicioncarga) MATCH SIMPLE
+    
 
 --
 -- Name: alarmas alarmas_fk_tanques; Type: FK CONSTRAINT; Schema: public; Owner: postgres

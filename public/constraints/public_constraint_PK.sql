@@ -2,8 +2,10 @@
 -- Name: alarmas alarmas_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.alarmas
-    ADD CONSTRAINT alarmas_pk PRIMARY KEY (idowner, idempresa, idestacion, tipo, fecha);
+-- ALTER TABLE ONLY public.alarmas
+ALTER TABLE ONLY public.alarms
+    -- ADD CONSTRAINT alarmas_pk PRIMARY KEY (idowner, idempresa, idestacion, tipo, fecha);
+    ADD CONSTRAINT alarms_pk PRIMARY KEY (idowner, idcompany, idstation, type, date)
 
 
 --
