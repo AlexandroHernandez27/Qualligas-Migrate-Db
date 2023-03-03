@@ -2,7 +2,7 @@
 
 -- DROP TABLE IF EXISTS public.ventas_impuestos;
 
-CREATE TABLE IF NOT EXISTS public.sales_taxes
+CREATE TABLE IF NOT EXISTS public.sale_taxes
 (
     idowner character varying(4) COLLATE pg_catalog."default" NOT NULL,
     idcompany numeric(2,0) NOT NULL,
@@ -18,5 +18,5 @@ CREATE TABLE IF NOT EXISTS public.sales_taxes
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.sales_taxes
+ALTER TABLE IF EXISTS public.sale_taxes
     OWNER to postgres;

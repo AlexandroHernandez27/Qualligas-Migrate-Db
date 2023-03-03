@@ -2,14 +2,14 @@
 
 -- DROP TABLE IF EXISTS public.sales_various;
 
-CREATE TABLE IF NOT EXISTS public.sales_various
+CREATE TABLE IF NOT EXISTS public.sale_various
 (
     idowner character varying(4) COLLATE pg_catalog."default" NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
     id numeric(10,0) NOT NULL,
     idlocation numeric(2,0) NOT NULL,
-    data timestamp without time zone NOT NULL,
+    date timestamp without time zone NOT NULL,
     idproduct character varying(30) COLLATE pg_catalog."default" NOT NULL,
     ammount numeric(16,6) NOT NULL,
     salesprice numeric(16,6) NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS public.sales_various
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.sales_various
+ALTER TABLE IF EXISTS public.sale_various
     OWNER to postgres;
 -- Index: sales_various_idx_estado
 

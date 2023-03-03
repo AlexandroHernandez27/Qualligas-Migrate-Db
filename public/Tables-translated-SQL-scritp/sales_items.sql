@@ -2,7 +2,7 @@
 
 -- DROP TABLE IF EXISTS public.ventas_items;
 
-CREATE TABLE IF NOT EXISTS public.sales_items
+CREATE TABLE IF NOT EXISTS public.sale_items
 (
     idowner character varying(4) COLLATE pg_catalog."default" NOT NULL,
     idcompany numeric(2,0) NOT NULL,
