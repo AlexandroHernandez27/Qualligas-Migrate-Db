@@ -76,3 +76,4 @@ ALTER TABLE ONLY hr.job_history
 
 ALTER TABLE ONLY hr.locations
     ADD CONSTRAINT loc_c_id_fk FOREIGN KEY (country_id) REFERENCES hr.countries(country_id);
+

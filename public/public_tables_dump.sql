@@ -11,7 +11,7 @@ CREATE TABLE public.alarms (
     idislandnd numeric(2,0),
     iddispensario numeric(2,0),
     idposicioncarga numeric(2,0),
-    idhose numeric(2,0),
+    idfuelhose numeric(2,0),
     idtank numeric(2,0),
     status character varying(2) NOT NULL
 );
@@ -36,7 +36,7 @@ CREATE TABLE public.advance_paymments (
 );
 
 
-ALTER TABLE public.advances OWNER TO postgres;
+ALTER TABLE public.advance_paymments OWNER TO postgres;
 
 --
 -- Name: anticipos_items; Type: TABLE; Schema: public; Owner: postgres
@@ -101,7 +101,7 @@ CREATE TABLE public.cargas (
     idisland numeric(2,0) NOT NULL,
     iddispensario numeric(2,0) NOT NULL,
     idposicioncarga numeric(2,0) NOT NULL,
-    idhose numeric(2,0) NOT NULL,
+    idfuelhose numeric(2,0) NOT NULL,
     type character varying(1) NOT NULL,
     date timestamp without time zone NOT NULL,
     idproduct character varying(30) NOT NULL,
@@ -366,7 +366,7 @@ ALTER TABLE public.addresses OWNER TO postgres;
 
 CREATE TABLE public.emails (
     idowner character varying(4) NOT NULL,
-    iddomicilio numeric(10,0) NOT NULL,
+    idaddress numeric(10,0) NOT NULL,
     id numeric(10,0) NOT NULL,
     name character varying(50) NOT NULL,
     email character varying(100) NOT NULL
@@ -442,10 +442,10 @@ CREATE TABLE public.stations_params (
 ALTER TABLE public.stations_params OWNER TO postgres;
 
 --
--- Name: existencias_tanks; Type: TABLE; Schema: public; Owner: postgres
+-- Name: existencias_tanques; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.existencias_tanks (
+CREATE TABLE public.existencias_tanques (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
@@ -462,7 +462,7 @@ CREATE TABLE public.existencias_tanks (
 );
 
 
-ALTER TABLE public.existencias_tanks OWNER TO postgres;
+ALTER TABLE public.existencias_tanques OWNER TO postgres;
 
 --
 -- Name: tax; Type: TABLE; Schema: public; Owner: postgres
@@ -617,7 +617,7 @@ CREATE TABLE public.detail_readings (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
-    reading numeric(10,0) NOT NULL,
+    idreading numeric(10,0) NOT NULL,
     idisland numeric(2,0) NOT NULL,
     iddispensario numeric(2,0) NOT NULL,
     idposicioncarga numeric(2,0) NOT NULL,

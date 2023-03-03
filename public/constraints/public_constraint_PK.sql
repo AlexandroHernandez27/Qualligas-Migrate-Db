@@ -12,32 +12,32 @@ ALTER TABLE ONLY public.alarms
 -- Name: anticipos_items anticipos_items_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.anticipos_items
-    ADD CONSTRAINT anticipos_items_pk PRIMARY KEY (idowner, idempresa, idestacion, idturnoinicio, idisla, iddispensario, idposicioncarga, fecha, id);
+ALTER TABLE ONLY public.item_advance_paymments
+    ADD CONSTRAINT item_advance_paymments_pk PRIMARY KEY (idowner, idcompany, idstation, idturnoinicio, idisland, iddispensario, idposicioncarga, date, id);
 
 
 --
 -- Name: anticipos_limites anticipos_limites_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.anticipos_limites
-    ADD CONSTRAINT anticipos_limites_pk PRIMARY KEY (metodopago);
+ALTER TABLE ONLY public.limit_advance_paymments
+    ADD CONSTRAINT limit_advance_paymments_pk PRIMARY KEY (paymentmethod);
 
 
 --
 -- Name: anticipos anticipos_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.anticipos
-    ADD CONSTRAINT anticipos_pk PRIMARY KEY (idowner, idempresa, idestacion, idturnoinicio, idisla, iddispensario, idposicioncarga, fecha);
+ALTER TABLE ONLY public.advance_paymments
+    ADD CONSTRAINT advance_paymments_pk PRIMARY KEY (idowner, idcompany, idstation, idturnoinicio, idisland, iddispensario, idposicioncarga, date);
 
 
 --
 -- Name: bitacora bitacora_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.bitacora
-    ADD CONSTRAINT bitacora_pk PRIMARY KEY (id);
+ALTER TABLE ONLY public.logbook
+    ADD CONSTRAINT logbook_pk PRIMARY KEY (id);
 
 
 --
@@ -45,15 +45,15 @@ ALTER TABLE ONLY public.bitacora
 --
 
 ALTER TABLE ONLY public.cargas
-    ADD CONSTRAINT cargas_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+    ADD CONSTRAINT cargas_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
 -- Name: catalogos catalogos_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.catalogos
-    ADD CONSTRAINT catalogos_pk PRIMARY KEY (idowner, catalogo, accesocatalogo, acceso, codigo);
+ALTER TABLE ONLY public.catalogs
+    ADD CONSTRAINT catalogs_pk PRIMARY KEY (idowner, catalog, catalogaccess, access, code);
 
 
 --
@@ -85,7 +85,7 @@ ALTER TABLE ONLY public.cfdsign
 --
 
 ALTER TABLE ONLY public.cmt_param
-    ADD CONSTRAINT cmt_param_pk PRIMARY KEY (idowner, idempresa, idestacion, cmt, nombre);
+    ADD CONSTRAINT cmt_param_pk PRIMARY KEY (idowner, idcompany, idstation, cmt, name);
 
 
 --
@@ -93,39 +93,39 @@ ALTER TABLE ONLY public.cmt_param
 --
 
 ALTER TABLE ONLY public.cmts
-    ADD CONSTRAINT cmts_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+    ADD CONSTRAINT cmts_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
 -- Name: contactos contactos_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.contactos
-    ADD CONSTRAINT contactos_pk PRIMARY KEY (idowner, iddomicilio);
+ALTER TABLE ONLY public.contacts
+    ADD CONSTRAINT contacts_pk PRIMARY KEY (idowner, idaddress);
 
 
 --
 -- Name: cre_bitacora cre_bitacora_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.cre_bitacora
-    ADD CONSTRAINT cre_bitacora_pk PRIMARY KEY (reporte, fecha);
+ALTER TABLE ONLY public.cre_logbook
+    ADD CONSTRAINT cre_logbook_pk PRIMARY KEY (report, date);
 
 
 --
 -- Name: cv_archivo cv_archivo_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.cv_archivo
-    ADD CONSTRAINT cv_archivo_pk PRIMARY KEY (nombre);
+ALTER TABLE ONLY public.cv_file
+    ADD CONSTRAINT cv_file_pk PRIMARY KEY (name);
 
 
 --
 -- Name: cv_bitacora cv_bitacora_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.cv_bitacora
-    ADD CONSTRAINT cv_bitacora_pk PRIMARY KEY (idowner, idempresa, idestacion, fecha);
+ALTER TABLE ONLY public.cv_logbook
+    ADD CONSTRAINT cv_logbook_pk PRIMARY KEY (idowner, idcompany, idstation, date);
 
 
 --
@@ -133,7 +133,7 @@ ALTER TABLE ONLY public.cv_bitacora
 --
 
 ALTER TABLE ONLY public.cv_iniop
-    ADD CONSTRAINT cv_iniop_pk PRIMARY KEY (idowner, idempresa, idestacion, filename);
+    ADD CONSTRAINT cv_iniop_pk PRIMARY KEY (idowner, idcompany, idstation, filename);
 
 
 --
@@ -141,7 +141,7 @@ ALTER TABLE ONLY public.cv_iniop
 --
 
 ALTER TABLE ONLY public.despachadores
-    ADD CONSTRAINT despachadores_pk PRIMARY KEY (idowner, idempresa, id);
+    ADD CONSTRAINT despachadores_pk PRIMARY KEY (idowner, idcompany, id);
 
 
 --
@@ -149,14 +149,14 @@ ALTER TABLE ONLY public.despachadores
 --
 
 ALTER TABLE ONLY public.dispensarios
-    ADD CONSTRAINT dispensarios_pk PRIMARY KEY (idowner, idempresa, idestacion, idisla, id);
+    ADD CONSTRAINT dispensarios_pk PRIMARY KEY (idowner, idcompany, idstation, idisland, id);
 
 
 --
 -- Name: domicilios domicilios_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.domicilios
+ALTER TABLE ONLY public.addresses
     ADD CONSTRAINT domicilios_pk PRIMARY KEY (idowner, id);
 
 
@@ -165,15 +165,15 @@ ALTER TABLE ONLY public.domicilios
 --
 
 ALTER TABLE ONLY public.emails
-    ADD CONSTRAINT emails_pk PRIMARY KEY (idowner, iddomicilio, id);
+    ADD CONSTRAINT emails_pk PRIMARY KEY (idowner, idaddres, id);
 
 
 --
 -- Name: empresas empresas_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.empresas
-    ADD CONSTRAINT empresas_pk PRIMARY KEY (idowner, id);
+ALTER TABLE ONLY public.companies
+    ADD CONSTRAINT companies_pk PRIMARY KEY (idowner, id);
 
 
 --
@@ -181,23 +181,23 @@ ALTER TABLE ONLY public.empresas
 --
 
 ALTER TABLE ONLY public.empresas_pricing
-    ADD CONSTRAINT empresas_pricing_pk PRIMARY KEY (idowner, idempresa);
+    ADD CONSTRAINT empresas_pricing_pk PRIMARY KEY (idowner, idcompany);
 
 
 --
 -- Name: estaciones_params estaciones_params_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.estaciones_params
-    ADD CONSTRAINT estaciones_params_pk PRIMARY KEY (idowner, idempresa, idestacion, nombre);
+ALTER TABLE ONLY public.stations_params
+    ADD CONSTRAINT stations_params_pk PRIMARY KEY (idowner, idcompany, idstation, name);
 
 
 --
 -- Name: estaciones estaciones_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.estaciones
-    ADD CONSTRAINT estaciones_pk PRIMARY KEY (idowner, idempresa, id);
+ALTER TABLE ONLY public.stations
+    ADD CONSTRAINT stations_pk PRIMARY KEY (idowner, idcompany, id);
 
 
 --
@@ -205,39 +205,39 @@ ALTER TABLE ONLY public.estaciones
 --
 
 ALTER TABLE ONLY public.existencias_tanques
-    ADD CONSTRAINT existencias_tanques_pk PRIMARY KEY (idowner, idempresa, idestacion, idtanque, fecha);
+    ADD CONSTRAINT existencias_tanques_pk PRIMARY KEY (idowner, idcompany, idstation, idtank, date);
 
 
 --
 -- Name: impuesto impuesto_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.impuesto
-    ADD CONSTRAINT impuesto_pk PRIMARY KEY (id);
+ALTER TABLE ONLY public.tax
+    ADD CONSTRAINT tax_pk PRIMARY KEY (id);
 
 
 --
 -- Name: impuesto_valor impuesto_valor_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.impuesto_valor
-    ADD CONSTRAINT impuesto_valor_pk PRIMARY KEY (impuesto, desde);
+ALTER TABLE ONLY public.tax_value
+    ADD CONSTRAINT tax_value_pk PRIMARY KEY (tax, _from);
 
 
 --
 -- Name: interfases_com_params interfases_com_params_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.interfases_com_params
-    ADD CONSTRAINT interfases_com_params_pk PRIMARY KEY (idowner, idempresa, idestacion, idinterfase, nombre);
+ALTER TABLE ONLY public.comm_params_interfaces
+    ADD CONSTRAINT comm_params_interfaces_pk PRIMARY KEY (idowner, idcompany, idstation, idinterface, name);
 
 
 --
 -- Name: interfases_comunicacion interfases_comunicacion_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.interfases_comunicacion
-    ADD CONSTRAINT interfases_comunicacion_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+ALTER TABLE ONLY public.communication_interfaces
+    ADD CONSTRAINT communication_interfaces_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
 
 
 --
@@ -245,7 +245,7 @@ ALTER TABLE ONLY public.interfases_comunicacion
 --
 
 ALTER TABLE ONLY public.inventarios_doctos_mvtos
-    ADD CONSTRAINT inventarios_doctos_mvtos_pk PRIMARY KEY (idowner, idempresa, idestacion, iddocto, id);
+    ADD CONSTRAINT inventarios_doctos_mvtos_pk PRIMARY KEY (idowner, idcompany, idstation, iddocto, id);
 
 
 --
@@ -253,47 +253,47 @@ ALTER TABLE ONLY public.inventarios_doctos_mvtos
 --
 
 ALTER TABLE ONLY public.inventarios_doctos
-    ADD CONSTRAINT inventarios_doctos_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+    ADD CONSTRAINT inventarios_doctos_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
 -- Name: inventarios inventarios_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.inventarios
-    ADD CONSTRAINT inventarios_pk PRIMARY KEY (idowner, idempresa, idestacion, idubicacion, idproducto, fecha);
+ALTER TABLE ONLY public.stock
+    ADD CONSTRAINT stock_pk PRIMARY KEY (idowner, idcompany, idstation, idlocation, idproduct, date);
 
 
 --
 -- Name: islas islas_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.islas
-    ADD CONSTRAINT islas_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+ALTER TABLE ONLY public.islands
+    ADD CONSTRAINT islands_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
 -- Name: lecturas_detalles lecturas_detalles_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.lecturas_detalles
-    ADD CONSTRAINT lecturas_detalles_pk PRIMARY KEY (idowner, idempresa, idestacion, idlectura, idisla, iddispensario, idposicioncarga, idmanguera);
+ALTER TABLE ONLY public.detail_readings
+    ADD CONSTRAINT detail_readings_pk PRIMARY KEY (idowner, idcompany, idstation, idreading, idisland, iddispensario, idposicioncarga, idmanguera);
 
 
 --
 -- Name: lecturas_parciales lecturas_parciales_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.lecturas_parciales
-    ADD CONSTRAINT lecturas_parciales_pk PRIMARY KEY (idowner, idempresa, idestacion, idisla, iddispensario, idposicioncarga, idmanguera);
+ALTER TABLE ONLY public.partial_readings
+    ADD CONSTRAINT partial_readings_pk PRIMARY KEY (idowner, idcomapny, idstation, idisland, iddispensario, idposicioncarga, idmanguera);
 
 
 --
 -- Name: lecturas lecturas_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.lecturas
-    ADD CONSTRAINT lecturas_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+ALTER TABLE ONLY public.readings
+    ADD CONSTRAINT readings_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
@@ -301,15 +301,15 @@ ALTER TABLE ONLY public.lecturas
 --
 
 ALTER TABLE ONLY public.licenses
-    ADD CONSTRAINT licenses_pk PRIMARY KEY (idowner, idempresa, idestacion, name);
+    ADD CONSTRAINT licenses_pk PRIMARY KEY (idowner, idcompany, idstation, name);
 
 
 --
 -- Name: mangueras mangueras_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.mangueras
-    ADD CONSTRAINT mangueras_pk PRIMARY KEY (idowner, idempresa, idestacion, idisla, iddispensario, idposicioncarga, id);
+ALTER TABLE ONLY public.fuel_hoses
+    ADD CONSTRAINT fuel_hoses_pk PRIMARY KEY (idowner, idcompany, idstation, idisland, iddispensario, idposicioncarga, id);
 
 
 --
@@ -324,16 +324,16 @@ ALTER TABLE ONLY public.messages
 -- Name: metodos_pago metodos_pago_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.metodos_pago
-    ADD CONSTRAINT metodos_pago_pk PRIMARY KEY (id);
+ALTER TABLE ONLY public.payment_methods
+    ADD CONSTRAINT payment_methods_pk PRIMARY KEY (id);
 
 
 --
 -- Name: objetos objetos_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.objetos
-    ADD CONSTRAINT objetos_pk PRIMARY KEY (idowner, id);
+ALTER TABLE ONLY public.objects
+    ADD CONSTRAINT objects_pk PRIMARY KEY (idowner, id);
 
 
 --
@@ -365,7 +365,7 @@ ALTER TABLE ONLY public.pemex_flota_recepcion
 --
 
 ALTER TABLE ONLY public.perifericos
-    ADD CONSTRAINT perifericos_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+    ADD CONSTRAINT perifericos_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
@@ -373,7 +373,7 @@ ALTER TABLE ONLY public.perifericos
 --
 
 ALTER TABLE ONLY public.posiciones_carga_params
-    ADD CONSTRAINT posiciones_carga_params_pk PRIMARY KEY (idowner, idempresa, idestacion, idisla, iddispensario, idposicioncarga, nombre);
+    ADD CONSTRAINT posiciones_carga_params_pk PRIMARY KEY (idowner, idcompany, idstation, idisland, iddispensario, idposicioncarga, name);
 
 
 --
@@ -381,7 +381,7 @@ ALTER TABLE ONLY public.posiciones_carga_params
 --
 
 ALTER TABLE ONLY public.posiciones_carga
-    ADD CONSTRAINT posiciones_carga_pk PRIMARY KEY (idowner, idempresa, idestacion, idisla, iddispensario, id);
+    ADD CONSTRAINT posiciones_carga_pk PRIMARY KEY (idowner, idcompany, idstation, idisland, iddispensario, id);
 
 
 --
@@ -429,7 +429,7 @@ ALTER TABLE ONLY public.pricing_cond_tax
 --
 
 ALTER TABLE ONLY public.pricing_proc_assign
-    ADD CONSTRAINT pricing_proc_assign_pk PRIMARY KEY (idowner, idproc, secuencia);
+    ADD CONSTRAINT pricing_proc_assign_pk PRIMARY KEY (idowner, idproc, sequence);
 
 
 --
@@ -452,48 +452,48 @@ ALTER TABLE ONLY public.pricing_tax_class
 -- Name: producto_impuesto producto_impuesto_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.producto_impuesto
-    ADD CONSTRAINT producto_impuesto_pk PRIMARY KEY (producto, impuesto);
+ALTER TABLE ONLY public.product_tax
+    ADD CONSTRAINT product_tax_pk PRIMARY KEY (product, tax);
 
 
 --
 -- Name: producto_impuesto_valor producto_impuesto_valor_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.producto_impuesto_valor
-    ADD CONSTRAINT producto_impuesto_valor_pk PRIMARY KEY (producto, impuesto, desde);
+ALTER TABLE ONLY public.product_tax_value
+    ADD CONSTRAINT product_tax_value_pk PRIMARY KEY (product, tax, _from);
 
 
 --
 -- Name: producto_precio producto_precio_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.producto_precio
-    ADD CONSTRAINT producto_precio_pk PRIMARY KEY (producto, desde);
+ALTER TABLE ONLY public.product_price
+    ADD CONSTRAINT product_price_pk PRIMARY KEY (product, _from);
 
 
 --
 -- Name: productos_adicional productos_adicional_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.productos_adicional
-    ADD CONSTRAINT productos_adicional_pk PRIMARY KEY (idowner, idempresa, idproducto);
+ALTER TABLE ONLY public.additional_products
+    ADD CONSTRAINT additional_products_pk PRIMARY KEY (idowner, idcompany, idproduct);
 
 
 --
 -- Name: productos_cre productos_cre_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.productos_cre
-    ADD CONSTRAINT productos_cre_pk PRIMARY KEY (idowner, idempresa, idproducto);
+ALTER TABLE ONLY public.cre_products
+    ADD CONSTRAINT cre_products_pk PRIMARY KEY (idowner, idcompany, idproduct);
 
 
 --
 -- Name: productos productos_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.productos
-    ADD CONSTRAINT productos_pk PRIMARY KEY (idowner, idempresa, id);
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_pk PRIMARY KEY (idowner, idcompany, id);
 
 
 --
@@ -501,55 +501,55 @@ ALTER TABLE ONLY public.productos
 --
 
 ALTER TABLE ONLY public.productos_taxes
-    ADD CONSTRAINT productos_taxes_pk PRIMARY KEY (idowner, idempresa, idproducto, idcond);
+    ADD CONSTRAINT productos_taxes_pk PRIMARY KEY (idowner, idcompany, idproduct, idcond);
 
 
 --
 -- Name: proveedor proveedor_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.proveedor
-    ADD CONSTRAINT proveedor_pk PRIMARY KEY (id);
+ALTER TABLE ONLY public.supplier
+    ADD CONSTRAINT supplier_pk PRIMARY KEY (id);
 
 
 --
 -- Name: recepcion_registro_doc recepcion_registro_doc_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.recepcion_registro_doc
-    ADD CONSTRAINT recepcion_registro_doc_pk PRIMARY KEY (idowner, idempresa, idestacion, recepcion_registro, recepcion_documento);
+ALTER TABLE ONLY public.record_receipt_doc
+    ADD CONSTRAINT record_receipt_doc_pk PRIMARY KEY (idowner, idcompany, idstation, record_receipt, record_doc);
 
 
 --
 -- Name: recepcion_registro recepcion_registro_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.recepcion_registro
-    ADD CONSTRAINT recepcion_registro_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+ALTER TABLE ONLY public.record_receipt
+    ADD CONSTRAINT record_receipt PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
 -- Name: recepciones_documentos recepciones_documentos_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.recepciones_documentos
-    ADD CONSTRAINT recepciones_documentos_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+ALTER TABLE ONLY public.documents_receipt
+    ADD CONSTRAINT documents_receipt_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
 -- Name: recepciones_tanq_doc recepciones_tanq_doc_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.recepciones_tanq_doc
-    ADD CONSTRAINT recepciones_tanq_doc_pk PRIMARY KEY (idowner, idempresa, idestacion, idtanque, idrece, iddoc);
+ALTER TABLE ONLY public.tank_receipt_docs
+    ADD CONSTRAINT tank_receipt_docs_pk PRIMARY KEY (idowner, idcompany, idstation, idtank, idrece, iddoc);
 
 
 --
 -- Name: recepciones_tanques recepciones_tanques_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.recepciones_tanques
-    ADD CONSTRAINT recepciones_tanques_pk PRIMARY KEY (idowner, idempresa, idestacion, idtanque, id);
+ALTER TABLE ONLY public.tank_receipts
+    ADD CONSTRAINT tank_receipts_pk PRIMARY KEY (idowner, idcompany, idstation, idtank, id);
 
 
 --
@@ -557,23 +557,23 @@ ALTER TABLE ONLY public.recepciones_tanques
 --
 
 ALTER TABLE ONLY public.registro_entrada
-    ADD CONSTRAINT registro_entrada_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+    ADD CONSTRAINT registro_entrada_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
 -- Name: roles_estaciones roles_estaciones_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.roles_estaciones
-    ADD CONSTRAINT roles_estaciones_pk PRIMARY KEY (idowner, idempresa, idestacion, usuario);
+ALTER TABLE ONLY public.roles_stations
+    ADD CONSTRAINT roles_stations_pk PRIMARY KEY (idowner, idcompany, idstation, user);
 
 
 --
 -- Name: roles_objetos roles_objetos_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.roles_objetos
-    ADD CONSTRAINT roles_objetos_pk PRIMARY KEY (idowner, idrol, idobjeto);
+ALTER TABLE ONLY public.roles_objects
+    ADD CONSTRAINT roles_objects_pk PRIMARY KEY (idowner, idrol, idobject);
 
 
 --
@@ -588,40 +588,40 @@ ALTER TABLE ONLY public.roles
 -- Name: roles_usuarios roles_usuarios_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.roles_usuarios
-    ADD CONSTRAINT roles_usuarios_pk PRIMARY KEY (idowner, idempresa, usuario, idrol);
+ALTER TABLE ONLY public.roles_users
+    ADD CONSTRAINT roles_usuarios_pk PRIMARY KEY (idowner, idcompany, user, idrol);
 
 
 --
 -- Name: sat_bitacora_diario sat_bitacora_diario_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.sat_bitacora_diario
-    ADD CONSTRAINT sat_bitacora_diario_pk PRIMARY KEY (fecha);
+ALTER TABLE ONLY public.sat_logbook_daily
+    ADD CONSTRAINT sat_logbook_daily_pk PRIMARY KEY (date);
 
 
 --
 -- Name: sat_bitacora_mensual sat_bitacora_mensual_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.sat_bitacora_mensual
-    ADD CONSTRAINT sat_bitacora_mensual_pk PRIMARY KEY (fecha);
+ALTER TABLE ONLY public.sat_logbook_monthly
+    ADD CONSTRAINT sat_logbook_monthly_pk PRIMARY KEY (fecha);
 
 
 --
 -- Name: sistema_medicion sistema_medicion_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.sistema_medicion
-    ADD CONSTRAINT sistema_medicion_pk PRIMARY KEY (id);
+ALTER TABLE ONLY public.measuremenet_system
+    ADD CONSTRAINT measuremenet_system_pk PRIMARY KEY (id);
 
 
 --
 -- Name: surtido surtido_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.surtido
-    ADD CONSTRAINT surtido_pk PRIMARY KEY (idowner, idempresa, idestacion, ubicacion, producto);
+ALTER TABLE ONLY public.assortmen
+    ADD CONSTRAINT assortmen_pk PRIMARY KEY (idowner, idcompany, idstation, location, product);
 
 
 --
@@ -636,16 +636,16 @@ ALTER TABLE ONLY public.tad
 -- Name: tanques tanques_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tanques
-    ADD CONSTRAINT tanques_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+ALTER TABLE ONLY public.tanks
+    ADD CONSTRAINT tanks_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
 -- Name: transportista transportista_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.transportista
-    ADD CONSTRAINT transportista_pk PRIMARY KEY (id);
+ALTER TABLE ONLY public.carrier
+    ADD CONSTRAINT carrier_pk PRIMARY KEY (id);
 
 
 --
@@ -653,7 +653,7 @@ ALTER TABLE ONLY public.transportista
 --
 
 ALTER TABLE ONLY public.turnos_cortes
-    ADD CONSTRAINT turnos_cortes_pk PRIMARY KEY (idowner, idempresa, idestacion, idturnoinicio, idisla, iddispensario, idposicioncarga);
+    ADD CONSTRAINT turnos_cortes_pk PRIMARY KEY (idowner, idcompany, idstation, idturnoinicio, idisland, iddispensario, idposicioncarga);
 
 
 --
@@ -661,92 +661,92 @@ ALTER TABLE ONLY public.turnos_cortes
 --
 
 ALTER TABLE ONLY public.turnos_inicio
-    ADD CONSTRAINT turnos_inicio_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+    ADD CONSTRAINT turnos_inicio_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
 -- Name: turnos turnos_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.turnos
-    ADD CONSTRAINT turnos_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+ALTER TABLE ONLY public.shifts
+    ADD CONSTRAINT shifts_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
 -- Name: ubicaciones_asignaciones ubicaciones_asignaciones_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.ubicaciones_asignaciones
-    ADD CONSTRAINT ubicaciones_asignaciones_pk PRIMARY KEY (idowner, idempresa, idestacion, idisla, iddispensario, idposicioncarca);
+ALTER TABLE ONLY public.assignments_locations
+    ADD CONSTRAINT assignments_locations_pk PRIMARY KEY (idowner, idcompany, idstation, idisland, iddispensario, idposicioncarca);
 
 
 --
 -- Name: ubicaciones ubicaciones_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.ubicaciones
-    ADD CONSTRAINT ubicaciones_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+ALTER TABLE ONLY public.locations
+    ADD CONSTRAINT locations_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
 -- Name: ubicaciones_turnos ubicaciones_turnos_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.ubicaciones_turnos
-    ADD CONSTRAINT ubicaciones_turnos_pk PRIMARY KEY (owner, empresa, estacion, turno, ubicacion);
+ALTER TABLE ONLY public.locations_shift
+    ADD CONSTRAINT ubicaciones_turnos_pk PRIMARY KEY (owner, company, station, shift, location);
 
 
 --
 -- Name: usuarios usuarios_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.usuarios
-    ADD CONSTRAINT usuarios_pk PRIMARY KEY (idowner, idempresa, usuario);
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pk PRIMARY KEY (idowner, idcompany, user);
 
 
 --
 -- Name: ventas_impuestos ventas_impuestos_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.ventas_impuestos
-    ADD CONSTRAINT ventas_impuestos_pk PRIMARY KEY (idowner, idempresa, idestacion, idventa, idventaitem, tipo, impuesto);
+ALTER TABLE ONLY public.sale_taxes
+    ADD CONSTRAINT sale_taxes_pk PRIMARY KEY (idowner, idcompany, idstation, idsale, idsalesitem, type, tax);
 
 
 --
 -- Name: ventas_items ventas_items_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.ventas_items
-    ADD CONSTRAINT ventas_items_pk PRIMARY KEY (idowner, idempresa, idestacion, idventa, id);
+ALTER TABLE ONLY public.sale_items
+    ADD CONSTRAINT sale_items_pk PRIMARY KEY (idowner, idempresa, idestacion, idventa, id);
 
 
 --
 -- Name: ventas_pagos ventas_pagos_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.ventas_pagos
-    ADD CONSTRAINT ventas_pagos_pk PRIMARY KEY (idowner, idempresa, idestacion, idventa, id);
+ALTER TABLE ONLY public.sale_payments
+    ADD CONSTRAINT sale_payments_pk PRIMARY KEY (idowner, idcompany, idstation, idsale, id);
 
 
 --
 -- Name: ventas ventas_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.ventas
-    ADD CONSTRAINT ventas_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+ALTER TABLE ONLY public.sales
+    ADD CONSTRAINT sales_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
 -- Name: ventas_varios ventas_varios_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.ventas_varios
-    ADD CONSTRAINT ventas_varios_pk PRIMARY KEY (idowner, idempresa, idestacion, id);
+ALTER TABLE ONLY public.sale_various
+    ADD CONSTRAINT sale_various_pk PRIMARY KEY (idowner, idcompany, idstation, id);
 
 
 --
 -- Name: versiones versiones_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.versiones
-    ADD CONSTRAINT versiones_pk PRIMARY KEY (archivo);
+ALTER TABLE ONLY public.versions
+    ADD CONSTRAINT versions_pk PRIMARY KEY (file);
