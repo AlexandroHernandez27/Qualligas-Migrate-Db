@@ -16,4 +16,4 @@ CREATE TABLE IF NOT EXISTS quallicfdweb.qg_webservice
 TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS quallicfdweb.qg_webservice
-    OWNER to postgres;
+    OWNER to postgres;  

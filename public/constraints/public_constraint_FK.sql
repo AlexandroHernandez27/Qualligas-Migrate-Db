@@ -14,7 +14,7 @@ ALTER TABLE ONLY public.alarms
 
 ALTER TABLE ONLY public.alarms
     -- ADD CONSTRAINT alarmas_fk_mangueras FOREIGN KEY (idowner, idempresa, idestacion, idisla, iddispensario, idposicioncarga, idmanguera) REFERENCES public.mangueras(idowner, idempresa, idestacion, idisla, iddispensario, idposicioncarga, id);
-    CONSTRAINT alarms_fk_hoses FOREIGN KEY (idcompany, idhose, idstation, iddispensario, idisland, idowner, idposicioncarga)
+    ADD CONSTRAINT alarms_fk_hoses FOREIGN KEY (idcompany, idhose, idstation, iddispensario, idisland, idowner, idposicioncarga)
         REFERENCES public.hoses (idcompany, id, idstation, iddispensario, idisland, idowner, idposicioncarga) MATCH SIMPLE
     
 
