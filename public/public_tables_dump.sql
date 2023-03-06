@@ -9,8 +9,8 @@ CREATE TABLE public.alarms (
     type character varying(1) NOT NULL,
     date timestamp without time zone NOT NULL,
     idislandnd numeric(2,0),
-    iddispensario numeric(2,0),
-    idposicioncarga numeric(2,0),
+    idgaspump numeric(2,0),
+    idfueltankposition numeric(2,0),
     idfuelhose numeric(2,0),
     idtank numeric(2,0),
     status character varying(2) NOT NULL
@@ -27,10 +27,10 @@ CREATE TABLE public.advance_paymments (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
-    idturnoinicio numeric(10,0) NOT NULL,
+    idstartshift numeric(10,0) NOT NULL,
     idisland numeric(2,0) NOT NULL,
-    iddispensario numeric(2,0) NOT NULL,
-    idposicioncarga numeric(2,0) NOT NULL,
+    idgaspump numeric(2,0) NOT NULL,
+    idfueltankposition numeric(2,0) NOT NULL,
     date timestamp without time zone NOT NULL,
     total numeric(16,6) NOT NULL
 );
@@ -46,10 +46,10 @@ CREATE TABLE public.item_advance_paymments (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
-    idturnoinicio numeric(10,0) NOT NULL,
+    idstartshift numeric(10,0) NOT NULL,
     idisland numeric(2,0) NOT NULL,
-    iddispensario numeric(2,0) NOT NULL,
-    idposicioncarga numeric(2,0) NOT NULL,
+    idgaspump numeric(2,0) NOT NULL,
+    idfueltankposition numeric(2,0) NOT NULL,
     date timestamp without time zone NOT NULL,
     id numeric(2,0) NOT NULL,
     paymentmethod character(1) NOT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE public.logbook (
     date timestamp without time zone NOT NULL,
     type character varying(2) NOT NULL,
     message character varying(4) NOT NULL,
-    user character varying(15),
+    _user character varying(15),
     data character varying(250),
     component character varying(250)
 );
@@ -93,19 +93,19 @@ ALTER TABLE public.logbook OWNER TO postgres;
 -- Name: cargas; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.cargas (
+CREATE TABLE public.fuel_purchases (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
     id numeric(10,0) NOT NULL,
     idisland numeric(2,0) NOT NULL,
-    iddispensario numeric(2,0) NOT NULL,
-    idposicioncarga numeric(2,0) NOT NULL,
+    idgaspump numeric(2,0) NOT NULL,
+    idfueltankposition numeric(2,0) NOT NULL,
     idfuelhose numeric(2,0) NOT NULL,
     type character varying(1) NOT NULL,
     date timestamp without time zone NOT NULL,
     idproduct character varying(30) NOT NULL,
-    cantidad numeric(16,6) NOT NULL,
+    amount numeric(16,6) NOT NULL,
     saleprice numeric(16,6) NOT NULL,
     importe numeric(16,6) NOT NULL,
     state numeric(1,0) NOT NULL,
@@ -114,14 +114,14 @@ CREATE TABLE public.cargas (
     importe_r numeric(16,6) NOT NULL,
     paymentmethod character varying(1) NOT NULL,
     formapago character varying(2) NOT NULL,
-    despachador numeric(3,0),
+    pumpattendant numeric(3,0),
     vol_ct numeric(16,6),
     temperature numeric(5,2),
-    turno_inicio numeric(10,0)
+    startshift numeric(10,0)
 );
 
 
-ALTER TABLE public.cargas OWNER TO postgres;
+ALTER TABLE public.fuel_purchases OWNER TO postgres;
 
 --
 -- Name: catalogos; Type: TABLE; Schema: public; Owner: postgres
@@ -303,25 +303,25 @@ CREATE TABLE public.cv_iniop (
 ALTER TABLE public.cv_iniop OWNER TO postgres;
 
 --
--- Name: despachadores; Type: TABLE; Schema: public; Owner: postgres
+-- Name: pumpattendantes; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.despachadores (
+CREATE TABLE public.pumpattendantes (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     id numeric(3,0) NOT NULL,
-    user character varying(15),
+    _user character varying(15),
     name character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.despachadores OWNER TO postgres;
+ALTER TABLE public.pumpattendantes OWNER TO postgres;
 
 --
--- Name: dispensarios; Type: TABLE; Schema: public; Owner: postgres
+-- Name: gaspumps; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.dispensarios (
+CREATE TABLE public.gaspumps (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
@@ -336,7 +336,7 @@ CREATE TABLE public.dispensarios (
 );
 
 
-ALTER TABLE public.dispensarios OWNER TO postgres;
+ALTER TABLE public.gaspumps OWNER TO postgres;
 
 --
 -- Name: domicilios; Type: TABLE; Schema: public; Owner: postgres
@@ -348,10 +348,10 @@ CREATE TABLE public.addresses (
     street character varying(100) NOT NULL,
     ext_num character varying(15) NOT NULL,
     int_num character varying(15) NOT NULL,
-    colonia character varying(50) NOT NULL,
-    localidad character varying(50) NOT NULL,
+    colony character varying(50) NOT NULL,
+    place character varying(50) NOT NULL,
     reference character varying(100) NOT NULL,
-    municipio character varying(50) NOT NULL,
+    city character varying(50) NOT NULL,
     state character varying(50) NOT NULL,
     country character varying(50) NOT NULL,
     postalcode character varying(10) NOT NULL
@@ -416,9 +416,9 @@ CREATE TABLE public.stations (
     keypemex character varying(10),
     idaddres numeric(10,0),
     name character varying(100) NOT NULL,
-    permiso_cre character varying(30) NOT NULL,
-    permiso_importacion character varying(30),
-    caracter_regulatorio character varying(30),
+    cre_permission character varying(30) NOT NULL,
+    import_permission character varying(30),
+    regulatorycharacter character varying(30),
     key_installation character varying(30),
     desc_installation character varying(250)
 );
@@ -445,7 +445,7 @@ ALTER TABLE public.stations_params OWNER TO postgres;
 -- Name: existencias_tanques; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.existencias_tanques (
+CREATE TABLE public.tanks_inventories (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
@@ -462,7 +462,7 @@ CREATE TABLE public.existencias_tanques (
 );
 
 
-ALTER TABLE public.existencias_tanques OWNER TO postgres;
+ALTER TABLE public.tanks_inventories OWNER TO postgres;
 
 --
 -- Name: tax; Type: TABLE; Schema: public; Owner: postgres
@@ -475,8 +475,8 @@ CREATE TABLE public.tax (
     tax character varying(5) NOT NULL,
     description character varying(50) NOT NULL,
     desglosar character(1) NOT NULL,
-    causa_iva character(1) NOT NULL,
-    en_precio character(1) NOT NULL
+    iva_reason character(1) NOT NULL,
+    in_price character(1) NOT NULL
 );
 
 
@@ -532,24 +532,24 @@ ALTER TABLE public.communication_interfaces OWNER TO postgres;
 -- Name: inventarios; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.stock (
+CREATE TABLE public.inventories (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
     idlocation numeric(2,0) NOT NULL,
     idproduct character varying(30) NOT NULL,
     date timestamp without time zone NOT NULL,
-    cantidad numeric(16,6) NOT NULL
+    amount numeric(16,6) NOT NULL
 );
 
 
-ALTER TABLE public.stock OWNER TO postgres;
+ALTER TABLE public.inventories OWNER TO postgres;
 
 --
 -- Name: inventarios_doctos; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.inventarios_doctos (
+CREATE TABLE public.doctos_inventories (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
@@ -558,13 +558,13 @@ CREATE TABLE public.inventarios_doctos (
 );
 
 
-ALTER TABLE public.inventarios_doctos OWNER TO postgres;
+ALTER TABLE public.doctos_inventories OWNER TO postgres;
 
 --
 -- Name: inventarios_doctos_mvtos; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.inventarios_doctos_mvtos (
+CREATE TABLE public.doctos_mvtos_inventories (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
@@ -577,7 +577,7 @@ CREATE TABLE public.inventarios_doctos_mvtos (
 );
 
 
-ALTER TABLE public.inventarios_doctos_mvtos OWNER TO postgres;
+ALTER TABLE public.doctos_mvtos_inventories OWNER TO postgres;
 
 --
 -- Name: islas; Type: TABLE; Schema: public; Owner: postgres
@@ -619,13 +619,13 @@ CREATE TABLE public.detail_readings (
     idstation numeric(2,0) NOT NULL,
     idreading numeric(10,0) NOT NULL,
     idisland numeric(2,0) NOT NULL,
-    iddispensario numeric(2,0) NOT NULL,
-    idposicioncarga numeric(2,0) NOT NULL,
+    idgaspump numeric(2,0) NOT NULL,
+    idfueltankposition numeric(2,0) NOT NULL,
     idhose numeric(2,0) NOT NULL,
     volume_e_reading numeric(16,6),
-    lectura_e_importe numeric(16,6),
+    importe_e_reading numeric(16,6),
     volume_m_reading numeric(16,6),
-    lectura_m_importe numeric(16,6)
+    importe_m_reading numeric(16,6)
 );
 
 
@@ -640,8 +640,8 @@ CREATE TABLE public.partial_readings (
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
     idisland numeric(2,0) NOT NULL,
-    iddispensario numeric(2,0) NOT NULL,
-    idposicioncarga numeric(2,0) NOT NULL,
+    idgaspump numeric(2,0) NOT NULL,
+    idfueltankposition numeric(2,0) NOT NULL,
     idhose numeric(2,0) NOT NULL,
     date timestamp without time zone NOT NULL,
     volume_reading numeric(16,0),
@@ -675,8 +675,8 @@ CREATE TABLE public.fuel_hoses (
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
     idisland numeric(2,0) NOT NULL,
-    iddispensario numeric(2,0) NOT NULL,
-    idposicioncarga numeric(2,0) NOT NULL,
+    idgaspump numeric(2,0) NOT NULL,
+    idfueltankposition numeric(2,0) NOT NULL,
     id numeric(2,0) NOT NULL,
     number character varying(2) NOT NULL,
     idproduct character varying(30),
@@ -712,12 +712,12 @@ CREATE TABLE public.payment_methods (
     formapago character(1),
     module character varying(50),
     visible character(1) NOT NULL,
-    cambio character(1),
+    exchange character(1),
     sat_key character(2),
-    order numeric(2,0),
-    monedero character(1),
+    _order numeric(2,0),
+    digitalwallet character(1),
     sat99 character(2),
-    vta_publico character(1)
+    public_translated_sale character(1)
 );
 
 
@@ -734,7 +734,7 @@ CREATE TABLE public.objects (
 );
 
 
-ALTER TABLE public.objetos OWNER TO postgres;
+ALTER TABLE public.objects OWNER TO postgres;
 
 --
 -- Name: owners; Type: TABLE; Schema: public; Owner: postgres
@@ -802,40 +802,40 @@ ALTER TABLE public.perifericos OWNER TO postgres;
 -- Name: posiciones_carga; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.posiciones_carga (
+CREATE TABLE public.fuel_tank_positions (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
     idisland numeric(2,0) NOT NULL,
-    iddispensario numeric(2,0) NOT NULL,
+    idgaspump numeric(2,0) NOT NULL,
     id numeric(2,0) NOT NULL,
     posicion character varying(2) NOT NULL,
-    lado character varying(1) NOT NULL,
-    modoventa numeric(1,0) NOT NULL,
+    side character varying(1) NOT NULL,
+    salemethod numeric(1,0) NOT NULL,
     code character varying(2),
     status character varying(10)
 );
 
 
-ALTER TABLE public.posiciones_carga OWNER TO postgres;
+ALTER TABLE public.fuel_tank_positions OWNER TO postgres;
 
 --
 -- Name: posiciones_carga_params; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.posiciones_carga_params (
+CREATE TABLE public.fuel_tank_position_params (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
     idisland numeric(2,0) NOT NULL,
-    iddispensario numeric(2,0) NOT NULL,
-    idposicioncarga numeric(2,0) NOT NULL,
+    idgaspump numeric(2,0) NOT NULL,
+    idfueltankposition numeric(2,0) NOT NULL,
     name character varying(20) NOT NULL,
     value character varying(50) NOT NULL
 );
 
 
-ALTER TABLE public.posiciones_carga_params OWNER TO postgres;
+ALTER TABLE public.fuel_tank_position_params OWNER TO postgres;
 
 --
 -- Name: pricing_as; Type: TABLE; Schema: public; Owner: postgres
@@ -1042,7 +1042,7 @@ CREATE TABLE public.products (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     id character varying(30) NOT NULL,
-    unidad character varying(15) NOT NULL,
+    unit character varying(15) NOT NULL,
     category character varying(20) NOT NULL,
     description character varying(100) NOT NULL,
     deleted character(1)
@@ -1087,7 +1087,7 @@ CREATE TABLE public.cre_products (
 );
 
 
-ALTER TABLE public.cre_products_cre OWNER TO postgres;
+ALTER TABLE public.cre_products OWNER TO postgres;
 
 --
 -- Name: products_taxes; Type: TABLE; Schema: public; Owner: postgres
@@ -1113,7 +1113,7 @@ CREATE TABLE public.supplier (
     name character varying(100) NOT NULL,
     type character(1) NOT NULL,
     rfc character varying(13),
-    permiso character varying(30),
+    permission character varying(30),
     deleted character(1)
 );
 
@@ -1129,7 +1129,7 @@ CREATE TABLE public.record_receipt (
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
     id numeric(10,0) NOT NULL,
-    record_entrada numeric(2,0) NOT NULL,
+    input_record numeric(2,0) NOT NULL,
     product character varying(30) NOT NULL,
     ignore character(1),
     date timestamp without time zone NOT NULL,
@@ -1137,10 +1137,10 @@ CREATE TABLE public.record_receipt (
     date_fin timestamp without time zone NOT NULL,
     totalizador_ini numeric(16,6) NOT NULL,
     totalizador_fin numeric(16,6) NOT NULL,
-    cantidad numeric(16,6) NOT NULL,
-    despachador numeric(3,0),
+    amount numeric(16,6) NOT NULL,
+    pumpattendant numeric(3,0),
     temperature numeric(5,2),
-    cantidad_ct numeric(16,6)
+    amount_ct numeric(16,6)
 );
 
 
@@ -1211,7 +1211,7 @@ CREATE TABLE public.tank_receipt_docs (
 );
 
 
-ALTER TABLE public.recepciones_tanq_doc OWNER TO postgres;
+ALTER TABLE public.tank_receipt_docs OWNER TO postgres;
 
 --
 -- Name: recepciones_tanks; Type: TABLE; Schema: public; Owner: postgres
@@ -1245,7 +1245,7 @@ ALTER TABLE public.tank_receipts OWNER TO postgres;
 -- Name: record_entrada; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.registro_entrada (
+CREATE TABLE public.input_record (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
@@ -1262,7 +1262,7 @@ CREATE TABLE public.registro_entrada (
 );
 
 
-ALTER TABLE public.registro_entrada OWNER TO postgres;
+ALTER TABLE public.input_record OWNER TO postgres;
 
 --
 -- Name: roles; Type: TABLE; Schema: public; Owner: postgres
@@ -1286,7 +1286,7 @@ CREATE TABLE public.roles_stations (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
-    user character varying(15) NOT NULL
+    _user character varying(15) NOT NULL
 );
 
 
@@ -1316,7 +1316,7 @@ ALTER TABLE public.roles_objects OWNER TO postgres;
 CREATE TABLE public.roles_users (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
-    user character varying(15) NOT NULL,
+    _user character varying(15) NOT NULL,
     idrol numeric(4,0) NOT NULL
 );
 
@@ -1408,10 +1408,10 @@ CREATE TABLE public.tanks (
     id numeric(2,0) NOT NULL,
     number character varying(2) NOT NULL,
     totalcapacity numeric(12,6) NOT NULL,
-    capacidadoperativa numeric(12,6) NOT NULL,
+    operationalcapacity numeric(12,6) NOT NULL,
     usefulcapacity numeric(12,6) NOT NULL,
-    capacidadfondaje numeric(12,6) NOT NULL,
-    volumenminopera numeric(12,6) NOT NULL,
+    fondajecapacity numeric(12,6) NOT NULL,
+    minoperatvolumen numeric(12,6) NOT NULL,
     idproduct character varying(30),
     idcmt numeric(2,0),
     cmtcode character varying(2) NOT NULL,
@@ -1459,41 +1459,41 @@ ALTER TABLE public.shifts OWNER TO postgres;
 -- Name: turnos_cortes; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.turnos_cortes (
+CREATE TABLE public.end_shifts (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
-    idturnoinicio numeric(10,0) NOT NULL,
+    idstartshift numeric(10,0) NOT NULL,
     idisland numeric(2,0) NOT NULL,
-    iddispensario numeric(2,0) NOT NULL,
-    idposicioncarga numeric(2,0) NOT NULL,
-    dateinicio timestamp without time zone NOT NULL,
-    datefin timestamp without time zone,
-    iddespachador numeric(3,0),
+    idgaspump numeric(2,0) NOT NULL,
+    idfueltankposition numeric(2,0) NOT NULL,
+    inidate timestamp without time zone NOT NULL,
+    findate timestamp without time zone,
+    idpumpattendant numeric(3,0),
     importe numeric(16,6) NOT NULL,
     sign character varying(200) NOT NULL
 );
 
 
-ALTER TABLE public.turnos_cortes OWNER TO postgres;
+ALTER TABLE public.end_shifts OWNER TO postgres;
 
 --
 -- Name: turnos_inicio; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.turnos_inicio (
+CREATE TABLE public.start_shifts (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
     idstation numeric(2,0) NOT NULL,
     id numeric(10,0) NOT NULL,
     idturno numeric(1,0) NOT NULL,
-    dateinicio timestamp without time zone NOT NULL,
-    datefin timestamp without time zone,
+    inidate timestamp without time zone NOT NULL,
+    findate timestamp without time zone,
     idreading numeric(10,0)
 );
 
 
-ALTER TABLE public.turnos_inicio OWNER TO postgres;
+ALTER TABLE public.start_shifts OWNER TO postgres;
 
 --
 -- Name: locationes; Type: TABLE; Schema: public; Owner: postgres
@@ -1521,12 +1521,12 @@ CREATE TABLE public.assignments_locations (
     idstation numeric(2,0) NOT NULL,
     idlocation numeric(2,0) NOT NULL,
     idisland numeric(2,0) NOT NULL,
-    iddispensario numeric(2,0) NOT NULL,
-    idposicioncarca numeric(2,0) NOT NULL
+    idgaspump numeric(2,0) NOT NULL,
+    idcarcaposition numeric(2,0) NOT NULL
 );
 
 
-ALTER TABLE public.locationes_asignaciones OWNER TO postgres;
+ALTER TABLE public.assignments_locations OWNER TO postgres;
 
 --
 -- Name: locationes_turnos; Type: TABLE; Schema: public; Owner: postgres
@@ -1551,7 +1551,7 @@ ALTER TABLE public.locations_shift OWNER TO postgres;
 CREATE TABLE public.users (
     idowner character varying(4) NOT NULL,
     idcompany numeric(2,0) NOT NULL,
-    user character varying(15) NOT NULL,
+    _user character varying(15) NOT NULL,
     name character varying(100) NOT NULL,
     passwd character varying(40),
     email character varying(100) NOT NULL,
@@ -1616,8 +1616,8 @@ CREATE TABLE public.sale_items (
     id numeric(10,0) NOT NULL,
     idproduct character varying(30) NOT NULL,
     description character varying(100),
-    unidad character varying(15),
-    cantidad numeric(16,6) NOT NULL,
+    unit character varying(15),
+    amount numeric(16,6) NOT NULL,
     price numeric(16,6) NOT NULL,
     importe numeric(16,6) NOT NULL,
     disccount numeric(16,6) NOT NULL
@@ -1658,7 +1658,7 @@ CREATE TABLE public.sale_various (
     idlocation numeric(2,0) NOT NULL,
     date timestamp without time zone NOT NULL,
     idproduct character varying(30) NOT NULL,
-    cantidad numeric(16,6) NOT NULL,
+    amount numeric(16,6) NOT NULL,
     salesprice numeric(16,6) NOT NULL,
     importe numeric(16,6) NOT NULL,
     state numeric(1,0) NOT NULL,
@@ -1667,10 +1667,10 @@ CREATE TABLE public.sale_various (
     paymentmethod character varying(1) NOT NULL,
     formapago character varying(2) NOT NULL,
     idisland numeric(2,0) NOT NULL,
-    iddispensario numeric(2,0) NOT NULL,
-    idposicioncarga numeric(2,0) NOT NULL,
-    despachador numeric(3,0),
-    turno_inicio numeric(10,0)
+    idgaspump numeric(2,0) NOT NULL,
+    idfueltankposition numeric(2,0) NOT NULL,
+    pumpattendant numeric(3,0),
+    start_shift numeric(10,0)
 );
 
 
